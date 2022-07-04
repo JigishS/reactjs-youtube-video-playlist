@@ -1,6 +1,6 @@
 import React from "react";
 
-class SeachBar extends React.Component {
+class SearchBar extends React.Component {
   state = { term: "" };
 
   onInputChange = (event) => {
@@ -31,4 +31,4 @@ class SeachBar extends React.Component {
   }
 }
 
-export default SeachBar;
+export default SearchBar;

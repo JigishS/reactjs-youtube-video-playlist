@@ -1,8 +1,8 @@
 import React from "react";
-import SeachBar from "./components/SearchBar";
 import youtube from "./api/youtube";
 import VideoList from "./components/VideoList";
 import VideDetail from "./components/VideoDetail";
+import SearchBar from "./components/SearchBar";
 
 class App extends React.Component {
   state = { videos: [], selectedVideo: null };
@@ -31,7 +31,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="ui container">
-        <SeachBar onFormSubmit={this.onTermSubmit} />
+        <SearchBar onFormSubmit={this.onTermSubmit} />
         <div className="ui grid">
           <div className="ui row">
             <div className="eleven wide column">
