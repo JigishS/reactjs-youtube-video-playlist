@@ -1,36 +1,37 @@
 import React from "react";
+import SeachBar from "./components/SearchBar";
 import youtube from "./api/youtube";
 import VideoList from "./components/VideoList";
 import VideDetail from "./components/VideoDetail";
-import SearchBar from "./components/SearchBar";
 
-const App = () => {
-  const [videos, setVideos] = useState([]);
-  const [selectedVideo, setselectedVideo] = useState(null);
+class App extends React.Component {
+  state = { videos: [], selectedVideo: null };
 
-  useEffect(() => {
-    onTermSubmit("Car");
-  }, []);
+  componentDidMount() {
+    this.onTermSubmit("Car");
+  }
 
-  const onTermSubmit = async (term) => {
+  onTermSubmit = async (term) => {
     const response = await youtube.get("/search", {
       params: {
         q: term,
       },
     });
 
-    setVideos(response.data.items);
-    setselectedVideo(response.data.items[0]);
+    this.setState({
+      videos: response.data.items,
+      selectedVideo: response.data.items[0],
+    });
   };
 
-  const onVideoSelect = (video) => {
-    setselectedVideo(video);
+  onVideoSelect = (video) => {
+    this.setState({ selectedVideo: video });
   };
 
   render() {
     return (
       <div className="ui container">
-        <SearchBar onFormSubmit={this.onTermSubmit} />
+        <SeachBar onFormSubmit={this.onTermSubmit} />
         <div className="ui grid">
           <div className="ui row">
             <div className="eleven wide column">
@@ -45,8 +46,8 @@ const App = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default App;
