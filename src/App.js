@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import youtube from "./api/youtube";
 import VideoList from "./components/VideoList";
 import VideDetail from "./components/VideoDetail";
@@ -27,16 +27,21 @@ const App = () => {
     setselectedVideo(video);
   };
 
-  return (
-    <div className="ui container">
-      <SearchBar onFormSubmit={onTermSubmit} />
-      <div className="ui grid">
-        <div className="ui row">
-          <div className="eleven wide column">
-            <VideDetail video={selectedVideo} />
-          </div>
-          <div className="five wide column">
-            <VideoList onVideoSelect={onVideoSelect} videos={videos} />
+  render() {
+    return (
+      <div className="ui container">
+        <SearchBar onFormSubmit={this.onTermSubmit} />
+        <div className="ui grid">
+          <div className="ui row">
+            <div className="eleven wide column">
+              <VideDetail video={this.state.selectedVideo} />
+            </div>
+            <div className="five wide column">
+              <VideoList
+                onVideoSelect={this.onVideoSelect}
+                videos={this.state.videos}
+              />
+            </div>
           </div>
         </div>
       </div>
