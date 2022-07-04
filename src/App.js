@@ -4,28 +4,27 @@ import VideoList from "./components/VideoList";
 import VideDetail from "./components/VideoDetail";
 import SearchBar from "./components/SearchBar";
 
-class App extends React.Component {
-  state = { videos: [], selectedVideo: null };
+const App = () => {
+  const [videos, setVideos] = useState([]);
+  const [selectedVideo, setselectedVideo] = useState(null);
 
-  componentDidMount() {
-    this.onTermSubmit("Car");
-  }
+  useEffect(() => {
+    onTermSubmit("Car");
+  }, []);
 
-  onTermSubmit = async (term) => {
+  const onTermSubmit = async (term) => {
     const response = await youtube.get("/search", {
       params: {
         q: term,
       },
     });
 
-    this.setState({
-      videos: response.data.items,
-      selectedVideo: response.data.items[0],
-    });
+    setVideos(response.data.items);
+    setselectedVideo(response.data.items[0]);
   };
 
-  onVideoSelect = (video) => {
-    this.setState({ selectedVideo: video });
+  const onVideoSelect = (video) => {
+    setselectedVideo(video);
   };
 
   render() {
@@ -46,8 +45,8 @@ class App extends React.Component {
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;
