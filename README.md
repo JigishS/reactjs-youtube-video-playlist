@@ -18,7 +18,11 @@ cd reactjs-youtube-video-playlist
 ```
 npm install
 ```
+##### 4) Now create youtube API
+To get video list and details you have to add youtube API. Please follow this reference and create an API - https://blog.hubspot.com/website/how-to-get-youtube-api-key
+##### 5) Add API key
+After creating youtube API, go to **/src/api/youtube.js** folder and add your API in KEY variable.
 
-You can create youtube API from here - https://blog.hubspot.com/website/how-to-get-youtube-api-key
+***
 
 Demo - https://reactjs-youtube-video-playlist.vercel.app/
